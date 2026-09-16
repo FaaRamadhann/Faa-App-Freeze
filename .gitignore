@@ -1,0 +1,11 @@
+*.zip
+build/
+manager/build/
+manager/debug.keystore
+manager.apk
+temp/
+__pycache__/
+*.pyc
+session-*
+.DS_Store
+Thumbs.db

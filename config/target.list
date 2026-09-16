@@ -1,0 +1,7 @@
+# Faa App Freezer targets
+# Format: package:action
+# action saat ini hanya: freeze
+# Contoh:
+# com.google.android.youtube:freeze
+# com.termux:freeze
+# Tambah via: faf target add <package> | hapus via: faf target rm <package>

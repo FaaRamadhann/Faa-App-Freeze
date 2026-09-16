@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/sea_bg">
+
+    <!-- Header gradien (tetap di atas) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/header_bg"
+        android:padding="14dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="❄ Faa App Freezer"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_sub"
+            android:textSize="13sp"
+            android:textColor="#C8EAF0" />
+    </LinearLayout>
+
+    <!-- Konten scroll -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp" android:layout_weight="1">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Status card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/rounded_card"
+            android:padding="12dp"
+            android:layout_margin="8dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/system_status"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="@color/sea_primary_dark" />
+            <TextView android:id="@+id/tvRoot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:text="● checking root…" />
+            <TextView android:id="@+id/tvStats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textSize="14sp"
+                android:text="…" />
+        </LinearLayout>
+
+        <!-- Auto freeze row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/rounded_card"
+            android:padding="10dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:gravity="center_vertical">
+            <LinearLayout
+                android:layout_width="0dp" android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/auto_freeze"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/sea_text" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Freeze target otomatis di background"
+                    android:textSize="12sp"
+                    android:textColor="@color/sea_text_muted" />
+            </LinearLayout>
+            <Switch android:id="@+id/swAuto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!-- Delay + Apply -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="8dp">
+            <Button android:id="@+id/btnDelay"
+                android:layout_width="0dp" android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:minHeight="44dp" android:minWidth="0dp"
+                android:textSize="14sp"
+                android:text="⏱ 60s" />
+            <Button android:id="@+id/btnApply"
+                android:layout_width="0dp" android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:minHeight="44dp" android:minWidth="0dp"
+                android:layout_marginLeft="6dp"
+                android:textSize="14sp"
+                android:backgroundTint="@color/sea_primary"
+                android:textColor="@color/sea_button_text"
+                android:text="@string/apply_targets" />
+        </LinearLayout>
+
+        <!-- Log -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Recent activity"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textColor="@color/sea_primary_dark" />
+        <TextView android:id="@+id/tvLog"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/rounded_card"
+            android:padding="8dp"
+            android:textSize="12sp"
+            android:scrollbars="vertical"
+            android:text="log…" />
+    </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom nav (terpin di bawah, di luar ScrollView) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/sea_bg"
+        android:padding="8dp">
+        <Button android:id="@+id/navHome"
+            android:layout_width="0dp" android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:minHeight="44dp" android:minWidth="0dp"
+            android:textSize="16sp" android:text="🏠" />
+        <Button android:id="@+id/navApps"
+            android:layout_width="0dp" android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:minHeight="44dp" android:minWidth="0dp"
+            android:layout_marginLeft="4dp"
+            android:textSize="16sp" android:text="📱" />
+        <Button android:id="@+id/navTargets"
+            android:layout_width="0dp" android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:minHeight="44dp" android:minWidth="0dp"
+            android:layout_marginLeft="4dp"
+            android:textSize="16sp" android:text="🎯" />
+        <Button android:id="@+id/navSettings"
+            android:layout_width="0dp" android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:minHeight="44dp" android:minWidth="0dp"
+            android:layout_marginLeft="4dp"
+            android:textSize="16sp" android:text="⚙" />
+    </LinearLayout>
+</LinearLayout>

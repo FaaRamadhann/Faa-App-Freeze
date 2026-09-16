@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Light Blue Sea theme -->
+    <color name="sea_bg">#E6F7FB</color>
+    <color name="sea_surface">#FFFFFF</color>
+    <color name="sea_primary">#00ACC1</color>
+    <color name="sea_primary_dark">#00838F</color>
+    <color name="sea_primary_light">#4DD0E1</color>
+    <color name="sea_accent">#26C6DA</color>
+    <color name="sea_deep">#01579B</color>
+    <color name="sea_text">#0B2E3B</color>
+    <color name="sea_text_muted">#5B7C87</color>
+    <color name="sea_card_stroke">#B2EBF2</color>
+    <color name="sea_frozen">#0288D1</color>
+    <color name="sea_active">#2E9E6B</color>
+    <color name="sea_warn">#E65100</color>
+    <color name="sea_button_text">#FFFFFF</color>
+</resources>

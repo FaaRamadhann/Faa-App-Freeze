@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/sea_bg">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="GENERAL" android:textSize="13sp" android:textStyle="bold" android:textColor="@color/sea_primary_dark" />
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/rounded_card"
+        android:padding="6dp"
+        android:layout_marginTop="4dp">
+        <Button android:id="@+id/btnAuto" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="46dp" android:textSize="15sp" android:text="❄ Auto Freeze ›" />
+        <Button android:id="@+id/btnDelay" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="46dp" android:textSize="15sp" android:text="⏱ Default Delay 60s" />
+    </LinearLayout>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" android:text="BEHAVIOR" android:textSize="13sp" android:textStyle="bold" android:textColor="@color/sea_primary_dark" />
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/rounded_card"
+        android:padding="6dp"
+        android:layout_marginTop="4dp">
+        <Button android:id="@+id/btnMethod" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="46dp" android:textSize="15sp" android:text="🔧 Freeze method ›" />
+        <Button android:id="@+id/btnVer" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="46dp" android:textSize="15sp" android:text="ℹ Module version" />
+    </LinearLayout>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" android:text="STORAGE" android:textSize="13sp" android:textStyle="bold" android:textColor="@color/sea_primary_dark" />
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/rounded_card"
+        android:padding="6dp"
+        android:layout_marginTop="4dp">
+        <Button android:id="@+id/btnClearLogs" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="46dp" android:textSize="15sp" android:text="@string/clear_logs" />
+        <Button android:id="@+id/btnReset" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="46dp" android:textSize="15sp" android:text="↺ Reset configuration" />
+    </LinearLayout>
+    <Button android:id="@+id/btnBack" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="44dp" android:textSize="14sp" android:layout_marginTop="10dp" android:text="← Back" />
+</LinearLayout>
+</ScrollView>

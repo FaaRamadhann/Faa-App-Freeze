@@ -1,0 +1,122 @@
+#!/system/bin/sh
+# faf - CLI utama Faa App Freezer (backend tunggal untuk Manager APK & terminal)
+# Manager APK TIDAK punya logic freeze sendiri, selalu: su -c "faf ..."
+
+MODPATH=${0%/*}
+# /system/bin/faf -> MODPATH sebenarnya modul (symlink magisk). Cari common terdekat.
+for _try in "$MODPATH/../common" "/data/adb/modules/faafreeze/common" "/data/adb/modules_update/faafreeze/common"; do
+  if [ -f "$_try/core.sh" ]; then MODPATH="$(dirname "$_try")"; break; fi
+done
+# shellcheck disable=SC1091
+if [ -f "$MODPATH/common/core.sh" ]; then
+  . "$MODPATH/common/core.sh"
+else
+  echo "faf: core.sh tidak ditemukan" >&2; exit 1
+fi
+faf_load_backend || exit 1
+
+faf_usage() {
+  echo "Faa App Freezer"
+  echo "Usage:"
+  echo "  faf <command> [options]"
+  echo ""
+  echo "Commands:"
+  echo "  list, l [all|user|frozen]  daftar aplikasi"
+  echo "  status, stats [package]    status ringkas / per-package"
+  echo "  info <package>             detail package"
+  echo "  freeze <package>           bekukan aplikasi"
+  echo "  unfreeze <package>         cairkan aplikasi"
+  echo "  toggle <package>           freeze/unfreeze otomatis"
+  echo "  target [add|rm|ls|clear]   kelola target.list"
+  echo "  apply                      freeze semua target"
+  echo "  reset                      unfreeze semua target FAF"
+  echo "  auto [on|off|status]       auto-freeze daemon"
+  echo "  logs                       tampilkan log"
+  echo "  clog, clogs, clearlogs     bersihkan log"
+  echo "  config [show|set|reset]    kelola config"
+  echo "  version                    versi FAF"
+  echo "  help, h                    bantuan ini"
+}
+
+faf_cmd_status() {
+  if [ -n "$1" ]; then
+    faf_require_pkg "$1" || exit 1
+    echo "package: $1"
+    echo "state:   $(faf_pkg_state "$1")"
+    echo "target:  $(faf_target_check "$1" && echo yes || echo no)"
+    echo "info:    $(faf_pkg_info "$1")"
+    return 0
+  fi
+  _all="$(pm list packages 2>/dev/null | wc -l | tr -d ' ')"
+  _fro="$(pm list packages -d 2>/dev/null | wc -l | tr -d ' ')"
+  _tgt="$(faf_target_list 2>/dev/null | wc -l | tr -d ' ')"
+  _daemon="stopped"
+  [ -f "$FAF_STATE_DIR/daemon.pid" ] && kill -0 "$(cat "$FAF_STATE_DIR/daemon.pid" 2>/dev/null)" 2>/dev/null && _daemon="running"
+  echo "FAF v$FAF_VERSION"
+  echo "apps:    $_all"
+  echo "frozen:  $_fro"
+  echo "targets: $_tgt"
+  echo "daemon:  $_daemon"
+  echo "auto:    $AUTO_FREEZE (${FREEZE_DELAY}s)"
+}
+
+faf_cmd_list() {
+  case "$1" in
+    frozen) faf_pkg_list_frozen ;;
+    user)   faf_pkg_list_user ;;
+    ""|all) faf_pkg_list_all ;;
+    *) echo "usage: faf list [all|user|frozen]" >&2; exit 1 ;;
+  esac
+}
+
+faf_daemon_pid() { cat "$FAF_STATE_DIR/daemon.pid" 2>/dev/null; }
+
+faf_cmd_auto() {
+  case "$1" in
+    on)  faf_config_set AUTO_FREEZE true >/dev/null; log_info "auto-freeze enabled via CLI";
+         # (re)start daemon bila service.sh tersedia
+         if [ -f "$MODPATH/service.sh" ]; then MODPATH="$MODPATH" nohup sh "$MODPATH/service.sh" daemon >/dev/null 2>&1 & echo "auto-freeze ON"; else echo "auto-freeze ON (reboot untuk start daemon)"; fi ;;
+    off) faf_config_set AUTO_FREEZE false >/dev/null; log_info "auto-freeze disabled via CLI";
+         _p="$(faf_daemon_pid)"; [ -n "$_p" ] && kill "$_p" 2>/dev/null; rm -f "$FAF_STATE_DIR/daemon.pid"; echo "auto-freeze OFF" ;;
+    ""|status)
+         _p="$(faf_daemon_pid)"
+         if [ -n "$_p" ] && kill -0 "$_p" 2>/dev/null; then echo "daemon running (pid $_p)"; else echo "daemon stopped"; fi
+         echo "AUTO_FREEZE=$AUTO_FREEZE FREEZE_DELAY=$FREEZE_DELAY" ;;
+    *) echo "usage: faf auto [on|off|status]" >&2; exit 1 ;;
+  esac
+}
+
+case "$1" in
+  ""|help|h|-h|--help) faf_usage; exit 0 ;;
+  version|--version|-v) echo "FAF v$FAF_VERSION"; exit 0 ;;
+  list|l) shift; faf_cmd_list "$@" ;;
+  status|stats|st) shift; faf_cmd_status "$@" ;;
+  info) shift; [ -n "$1" ] || { echo "usage: faf info <package>" >&2; exit 1; }; faf_pkg_info "$1" ;;
+  freeze) shift; [ -n "$1" ] || { echo "usage: faf freeze <package>" >&2; exit 1; }; faf_require_root || exit 1; faf_freeze "$1" ;;
+  unfreeze) shift; [ -n "$1" ] || { echo "usage: faf unfreeze <package>" >&2; exit 1; }; faf_require_root || exit 1; faf_unfreeze "$1" ;;
+  toggle) shift; [ -n "$1" ] || { echo "usage: faf toggle <package>" >&2; exit 1; }; faf_require_root || exit 1; faf_toggle "$1" ;;
+  target|t)
+    shift; sub="$1"; shift
+    case "$sub" in
+      ""|ls|list) faf_target_list ;;
+      add) faf_target_add "$@" ;;
+      rm|remove|del) faf_target_rm "$@" ;;
+      clear) faf_target_clear ;;
+      *) echo "usage: faf target [add|rm|ls|clear] <package>" >&2; exit 1 ;;
+    esac ;;
+  apply) faf_require_root || exit 1; faf_apply_targets ;;
+  reset) faf_require_root || exit 1; faf_unfreeze_all_managed ;;
+  auto) shift; faf_cmd_auto "$@" ;;
+  logs|log) faf_logs_print ;;
+  clog|clogs|clearlogs|clearlog) faf_logs_clear ;;
+  config|cfg)
+    shift; sub="$1"; shift
+    case "$sub" in
+      ""|show) faf_config_show ;;
+      set) faf_config_set "$@" ;;
+      get) faf_config_get "$@" ;;
+      reset) faf_config_reset ;;
+      *) echo "usage: faf config [show|set <k> <v>|get <k>|reset]" >&2; exit 1 ;;
+    esac ;;
+  *) echo "unknown command: $1" >&2; echo ""; faf_usage; exit 1 ;;
+esac

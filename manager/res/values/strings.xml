@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FAF Manager</string>
+    <string name="app_sub">Faa App Freezer — Root App Freezer</string>
+    <string name="home">Home</string>
+    <string name="apps">Apps</string>
+    <string name="targets">Targets</string>
+    <string name="settings">Settings</string>
+    <string name="system_status">SYSTEM STATUS</string>
+    <string name="auto_freeze">Auto Freeze</string>
+    <string name="freeze_delay">Freeze Delay</string>
+    <string name="apply_targets">APPLY TARGETS</string>
+    <string name="search_hint">Search package/name</string>
+    <string name="freeze">FREEZE</string>
+    <string name="unfreeze">UNFREEZE</string>
+    <string name="add_target">ADD TO TARGET</string>
+    <string name="remove_target">REMOVE TARGET</string>
+    <string name="logs">Logs</string>
+    <string name="clear_logs">Clear logs</string>
+    <string name="root_ok">ROOT AVAILABLE</string>
+    <string name="root_no">ROOT MISSING</string>
+    <string name="active">ACTIVE</string>
+    <string name="frozen">FROZEN</string>
+</resources>

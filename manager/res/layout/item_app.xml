@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_card"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <TextView android:id="@+id/tvName"
+            android:layout_width="0dp" android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/sea_deep"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:text="App" />
+        <TextView android:id="@+id/tvState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:text="ACTIVE" />
+    </LinearLayout>
+    <TextView android:id="@+id/tvPkg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="@color/sea_text_muted"
+        android:singleLine="true"
+        android:ellipsize="middle"
+        android:text="pkg" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="6dp">
+        <Button android:id="@+id/btnToggle"
+            android:layout_width="0dp" android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:minHeight="40dp" android:minWidth="0dp"
+            android:textSize="13sp"
+            android:backgroundTint="@color/sea_primary"
+            android:textColor="@color/sea_button_text"
+            android:text="@string/freeze" />
+        <Button android:id="@+id/btnTarget"
+            android:layout_width="0dp" android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:minHeight="40dp" android:minWidth="0dp"
+            android:layout_marginLeft="4dp"
+            android:textSize="13sp"
+            android:text="@string/add_target" />
+    </LinearLayout>
+</LinearLayout>

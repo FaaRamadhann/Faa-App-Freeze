@@ -1,0 +1,21 @@
+#!/sbin/sh
+# update-binary stub Magisk — diekstrak Magisk Manager, jangan edit manual.
+# Installer asli ada di customize.sh
+umask 022
+ui_print() { echo "$1"; }
+require_new_magisk() {
+  ui_print "*******************************"
+  ui_print " Faa App Freezer"
+  ui_print "*******************************"
+  ui_print "! Magisk terlalu lama / stub terpanggil langsung."
+  ui_print "! Install via Magisk Manager / KernelSU / APatch."
+  exit 1
+}
+OUTFD=$2
+ZIPFILE=$3
+mount /data 2>/dev/null
+[ -z "$ZIPFILE" ] && require_new_magisk
+# Serahkan ke Magisk: unzip customize.sh lalu jalankan via framework.
+# Stub ini hanya fallback bila framework tidak memanggil customize.sh.
+ui_print "- FAF stub installer (framework akan lanjut ke customize.sh)"
+exit 0

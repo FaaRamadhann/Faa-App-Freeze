@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="FafSeaTheme" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:colorPrimary">@color/sea_primary</item>
+        <item name="android:colorPrimaryDark">@color/sea_primary_dark</item>
+        <item name="android:colorAccent">@color/sea_accent</item>
+        <item name="android:windowBackground">@color/sea_bg</item>
+        <item name="android:textColorPrimary">@color/sea_text</item>
+        <item name="android:textColorSecondary">@color/sea_text_muted</item>
+    </style>
+    <style name="FafCard" parent="android:Widget">
+        <item name="android:background">@color/sea_surface</item>
+    </style>
+    <style name="FafButtonSea" parent="android:Widget.Material.Button.Colored">
+        <item name="android:background">@color/sea_primary</item>
+        <item name="android:textColor">@color/sea_button_text</item>
+    </style>
+</resources>

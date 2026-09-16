@@ -1,0 +1,6 @@
+id=faafreeze
+name=Faa App Freeze (FAF)
+version=1.0.0
+versionCode=1
+author=Faa Ramadhan
+description=Pembeku aplikasi root mirip Hail. Bekukan/unfreeze aplikasi via CLI faf atau FAF Manager, plus auto-freeze saat boot.

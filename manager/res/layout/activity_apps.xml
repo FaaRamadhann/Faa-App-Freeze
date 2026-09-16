@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/sea_bg"
+    android:padding="8dp">
+
+    <EditText android:id="@+id/etSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="46dp"
+        android:hint="@string/search_hint"
+        android:textSize="15sp"
+        android:background="@drawable/rounded_card"
+        android:padding="8dp"
+        android:singleLine="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="6dp">
+        <Button android:id="@+id/fAll" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:minHeight="40dp" android:minWidth="0dp" android:textSize="13sp" android:text="All" />
+        <Button android:id="@+id/fUser" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:minHeight="40dp" android:minWidth="0dp" android:layout_marginLeft="4dp" android:textSize="13sp" android:text="User" />
+        <Button android:id="@+id/fSys" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:minHeight="40dp" android:minWidth="0dp" android:layout_marginLeft="4dp" android:textSize="13sp" android:text="System" />
+        <Button android:id="@+id/fFrozen" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:minHeight="40dp" android:minWidth="0dp" android:layout_marginLeft="4dp" android:textSize="13sp" android:text="Frozen" />
+    </LinearLayout>
+
+    <ListView android:id="@+id/lvApps"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" android:layout_weight="1"
+        android:layout_marginTop="6dp"
+        android:divider="@color/sea_bg"
+        android:dividerHeight="6dp" />
+
+    <Button android:id="@+id/btnBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="44dp"
+        android:textSize="14sp"
+        android:layout_marginTop="6dp"
+        android:text="← Back" />
+</LinearLayout>
