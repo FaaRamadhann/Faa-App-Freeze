@@ -161,12 +161,6 @@ su -c 'faf logs'
 > ⚠️ Jangan freeze aplikasi kritikal sistem seperti keyboard
 > (`com.android.inputmethod.latin`) — bisa bikin HP tidak bisa ngetik.
 
-## Versi
-
-Format: `1.0.0 > 1.2.0 > 1.3.0 > ...` — naikkan hanya sisi yang berubah
-(module **atau** manager, bukan keduanya sekaligus). Sinkronkan
-`module.prop` + `manager/AndroidManifest.xml` + `common/core.sh → FAF_VERSION`.
-
 ## Uninstall
 
 `uninstall.sh` mencairkan semua target FAF, menghentikan daemon,
