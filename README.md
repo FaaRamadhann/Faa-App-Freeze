@@ -1,5 +1,12 @@
 # Faa App Freeze (FAF) ❄️
 
+![Version](https://img.shields.io/badge/version-1.0.0-00ACC1)
+![Android](https://img.shields.io/badge/Android-5.0%2B-3DDC84?logo=android&logoColor=white)
+![Magisk](https://img.shields.io/badge/Magisk-✓-00ACC1)
+![KernelSU](https://img.shields.io/badge/KernelSU-✓-00ACC1)
+![APatch](https://img.shields.io/badge/APatch-✓-00ACC1)
+![License](https://img.shields.io/badge/license-MIT-01579B)
+
 Pembeku aplikasi root mirip [Hail](https://f-droid.org/packages/com.aistra.hail/) — via **Magisk module + CLI `faf` + FAF Manager APK** dengan tema **Light Blue Sea** 🌊.
 
 APK cuma control panel. Engine-nya adalah `faf` CLI + `common/*.sh` + Android Package Manager. Satu backend, satu sumber kebenaran.
